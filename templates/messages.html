@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Сообщения {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-4 border-right">
+    <h3 class="text-primary">Чаты</h3>
+    <ul class="list-group">
+      {% for user in users %}
+        {% if user != current_user %}
+          <a href="{{ url_for('view_messages', user_id=user.id) }}" class="list-group-item list-group-item-action">
+            {{user.username}}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    </div>
+    <div class="col-8">
+      {% block messages_content %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

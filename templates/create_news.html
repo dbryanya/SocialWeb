@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Создать новость {% endblock %}
+
+{% block content %}
+    <h1>Создать новость</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=60) }}
+        </p>
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(row=10, cols=60) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

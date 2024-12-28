@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        {% if user.profile_pic %}
+            <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" width="150" alt="Фото профиля">
+        {% endif %}
+        <h2 class="text-primary">{{ user.username }}</h2>
+        <h3 class="text-primary">Добрый день, {{ user.Fname }} {{ user.Sname }}</h3>
+        <p>Описание: {{ user.about_me }}</p>
+        {% if current_user == user %}
+            <p><a href="{{ url_for('edit_profile') }}"><button class="btn btn-primary">Редактировать</button></a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

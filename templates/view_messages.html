@@ -1,0 +1,27 @@
+{% extends 'messages.html' %}
+
+{% block title %} Диалог с {{ recipient.username }} {% endblock %}
+
+{% block messages_content %}
+<div class="border rounded overflow-auto" style="height: 500px;" id="message-container">
+    {% for message in messages%}
+        {% if message.sender_id == current_user.id %}
+            <div class="d-flex justify-content-end md-3">
+                <div class="bg-primary bg-opacity-75 rounded-pill px-3 py-2 w-auto" style="max-width: 70%;">
+                    {{ message.text }}
+                </div>
+            </div>
+        {% else %}
+        <div class="d-flex justify-content-start md-3">
+            <div class="bg-secondary bg-opacity-75 rounded-pill px-3 py-2 w-auto" style="max-width: 70%;">
+                {{ message.text }}
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<form class="input-group mt-3" method="post">
+    <input type="text" class="form-control" name="message_text" placeholder="Напишите сообщение.." required>
+    <button class="btn btn-primary" type="submit">Отправить</button>
+</form>
+{% endblock %}
